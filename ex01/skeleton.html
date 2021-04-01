@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">    <!-- HTML문서의 최상위 요소-->
+    <head>  
+        <!--실제 렌더링 되지는 않음
+            페이지에 연관되는 리소스 혹은 정보를 제공-->
+            <title> HTML Skeleton</title>
+
+            <!--meta tag : 문서의 메타 정보-->
+            <!--meta name - content-->
+            <!--검색 엔진이 문서를 잘 검색할 수 있도록 문서 정보 제공-->
+            <meta name="keyword" content="HTML, CSS, JacaScript연습"/>
+            <meta name="description" content="Bit Acadmy 2021" />
+            <meta name="author" content="전혜지" />
+
+            <!--meta http-equiv
+                문서를 렌더링하기 위해 필요한 각종 Header 정보를 설정
+            -->
+            <!--http-equiv="Content-Type" 거의 필수-->
+            <!--meta http-equiv="Content-Type" content="text/html;charset=UTF-8" /-->
+            <meta charset="UTF-8" />   
+            <!--HTML 5 스타일-->
+    </head>
+    <!--BODY : 실제 무서 렌더링 되는 영역-->
+    <body>
+        <h1>렌더링 영역</h1>
+        <p> Body 태그 내 요소들은 브라우저에 렌더링 됩니다.</p>
+        <p> HTML 요소들은 중첩될 수 있다.</p>
+
+        <h2>텍스트 관련 태그</h2>
+        <p> HTML은 개행을
+            표시하지 않는다
+        </p>
+        <p>임의로 개행을 하고자 한다면 <br/>
+            BR 태그를 사용한다</p>
+            <p>HTML은 연속된 공백을 1개로 표시한다.</p>
+            <p>임의로 &nbsp; &nbsp; &nbsp; 여러개의 공백을 출력할때는 nbsp특수문자 사용</p>
+
+            <h2>HTML 특수문자</h2>
+            <p>
+                <test> : <, >로 묶인 문자열은 표시되지 않음
+                    <!-- <test> : 태그로 판단함 -->
+            </p>
+            <p>
+                &lt;test&gt; : <,>를 표시하기 위해서는 lt, gt특수문자 사용
+            </p>
+            <p> 
+                &amp; <!-- &표시--> <br/>
+                &copy; 
+            </p>
+    </body>
+</html>
