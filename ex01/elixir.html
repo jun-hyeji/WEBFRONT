@@ -5,7 +5,11 @@
     <meta http-equiv="Content" content="text/html; charset=UTF-8">
   </head>
   <body>
+    <header>
     <h1>건강 음료</h1>
+  </header>
+  <nav> <!--nav : 메뉴 등 사이트 네비게이션 관련 시멘틱 태그-->
+    <!--리스트를 활용한 메뉴-->
     <ul>
       <!--ul 순서없는 리스트-->
       <!--ol 순서 있는 리스트-->
@@ -14,32 +18,57 @@
       <li>Purple</li>
       <li>red</li>
     </ul>
+    </nav>
 
-    <h2>Green Tea Cooler </h2>  
-    <!-- 상대경로를 이용
-        . : 현재위치
-        .. : 부모 디렉토리-->
-    <img src="./images/green.jpg" alt="그린티">
-    <p>  Chock full of vitamins and minerals,
-       this elixir combines the healthful benefits of green tea with a 
-       twist of chamomile blossoms and ginger root.
-      </p>
+    <article> <!-- article : 실제 컨텐츠를 표시하는 시멘틱 태그-->
 
-      <h2>Raspberry Ice Concentration</h2>
-      <img src="./images/lightblue.jpg" alt="라이트블루">
-      <p>Combining raspberry juice with lemon grass, 
-        citrus peel and rosehips, this icy drink will make your 
-        mind feel clear and crisp.
-      </p>
+      <!--시멘틱 태그는 div의 일종이지만, 좀 더 구체적인 의미를 가지는 공간점유태그-->
+      <div>
+        <img src="./images/Penguins.jpg" alt="Seller"> 
+      </div>
 
-      <h2>Blueberry Bliss Elixir</h2>
-      <img src="./images/blue.jpg" alt="블루">
-      <p> Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
+      <section>
+        <h2>Green Tea Cooler </h2>  
+        <!-- 상대경로를 이용
+            . : 현재위치
+            .. : 부모 디렉토리-->
+        <img src="./images/green.jpg" alt="그린티">
+        <p>  Chock full of vitamins and minerals,
+          this elixir combines the healthful benefits of green tea with a 
+          twist of chamomile blossoms and ginger root.
+          </p>
+      </section>
+
+      <section>
+          <h2>Raspberry Ice Concentration</h2>
+          <img src="./images/lightblue.jpg" alt="라이트블루">
+          <p>Combining raspberry juice with lemon grass, 
+            citrus peel and rosehips, this icy drink will make your 
+            mind feel clear and crisp.
+          </p>
+    </section>
+
+    <section>
+        <h2>Blueberry Bliss Elixir</h2>
+        <img src="./images/blue.jpg" alt="블루">
+        <p> Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
+        </p>
+      </section>
+
+      <section>
+        <h2>Cranberry Antioxidant Blast</h2>
+        <img src="./images/red.jpg" alt="레드">
+        <p> Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
+        </p>
+        <p><a href="index.html">메인으로 돌아가기</a></p>
+    </section>
+    </article>
+    <nav>
+      <p>
+        <a href="index.html">메인으로 돌아가기</a>
       </p>
-      <h2>Cranberry Antioxidant Blast</h2>
-      <img src="./images/red.jpg" alt="레드">
-      <p> Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
-      </p>
-      <p><a href="index.html">메인으로 돌아가기</a></p>
+    </nav>
+    <footer>&copy; Bit Lounge, 2021</footer>
   </body>
+  
 </html>

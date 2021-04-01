@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>멤버십 가입</title>
+        <meta http-equiv="Content-Type"
+            content="text/html;charset=UTF-8"/>
+    </head>
+    <body>
+        <h1>멤버십 가입</h1>
+
+        <!--서버로 데이터 전송을 위해
+            사용자 입력을 받는 입력 태그-->
+
+            <!--form 태그 속성
+                method :  서버로 데이터 전송을 위한 전송방식(POST, GET(기본값))
+                action : 폼 데이터로 처리할 서버 페이지의 주소
+            -->
+            <form method="POST"
+                action="target.html">
+                <!-- 입력 방식 그룹화-->
+                <fieldset>
+                    <legend>회원가입</legend>
+                    <!--입력 필드 설명-->
+                    <label for="userid">아이디</label>
+                    <!--type이 생략되면 text(기본값)-->
+                    <!--입력 할 수 있는 상태 : focus-->
+                    <!--입력 필드의 name 속성 : 서버 전송시 사용
+                        id 속성 : HTML 내에서 해당 요소를 식별하기 위해 사용-->
+                    <input name="userid" id="userid" /><br/>
+                    <label for="password">비밀번호</label>
+                    <!--type="password" : 입력 값을 숨긴다-->
+                    <input type="password" name="password" id="password" /><br />
+                    <!--입력 필드에 값을 부여할 때는 value 속성 사용-->
+                    <input type="hidden" name="code" value="secret_code" />
+                    <label for="recom">추천인</label>
+                    <!--disabled속성이 있으면 해당 입력 상자는 사용 불가-->
+                    <!-- <input type="text" name="recom" id="recom" 
+                            value="홍길동" disabled=true /> -->
+                    <input type="text" name="recom" id="recom"
+                            value="홍길동" disabled /><br />
+
+                            <label>성별</label>
+                            <input type="radio" name="gender" value="male" checked /> 남
+                            <input type="radio" name="gender" value="female"/>여
+
+                            <label>선호 음료</label>
+                            <!--같은 name을 가진 checkbox 중에서 중복 선택
+                                중요 : String의 배열로 전송된다-->
+                            <input type="checkbox" name="favorite" value="americano" />아메리카노
+                            <input type="checkbox" name="favorite" value="latte"/> 라뗴
+                            <input type="checkbox" name="favorite" value="ade" />에이드
+                            <input type="checkbox" name="favorite" value="tea"/>녹차/홍차
+                            <br/>
+
+                            <label for="telecom">통신사</label>
+                            <!--서버로는 선택된 OPTION의 value가 전송-->
+                            <select name="telecom" id="telecom">
+                                <!--서브 태그-->
+                                <option value="S">SKT</option>
+                                <option value="K">KT</option>
+                                <option value="L">SKT</option>
+                                <option value="E">SKT</option>
+                            </select><br/>
+
+                            <input type="submit" value="멤버십가입"><!--현재폼을 서버로 전송-->
+                            <input type="reset" value="다시 작성"><!--작성 중인 폼을 초기화-->
+                </fieldset>
+
+            </form>
+    </body>
+</html>
