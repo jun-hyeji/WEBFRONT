@@ -5,21 +5,25 @@
     <meta http-equiv="Content" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
+
+
   <body>
-    <header>
-    <h1>건강 음료</h1>
-  </header>
-  <nav> <!--nav : 메뉴 등 사이트 네비게이션 관련 시멘틱 태그-->
-    <!--리스트를 활용한 메뉴-->
-    <ul>
-      <!--ul 순서없는 리스트-->
-      <!--ol 순서 있는 리스트-->
-      <li>Green</li>
-      <li>Blue</li>
-      <li>Purple</li>
-      <li>red</li>
-    </ul>
-    </nav>
+    <header><!--사이트 전체 혹은 기사의 헤더 정보-->
+      <h1>건강 음료</h1>
+    </header>
+
+
+    <nav> <!--nav : 메뉴 등 사이트 네비게이션 관련 시멘틱 태그-->
+      <!--리스트를 활용한 메뉴-->
+        <ul>
+          <!--ul 순서없는 리스트-->
+          <!--ol 순서 있는 리스트-->
+          <li>Green</li>
+          <li>Blue</li>
+          <li>Purple</li>
+          <li>red</li>
+        </ul>
+      </nav>
 
     <article> <!-- article : 실제 컨텐츠를 표시하는 시멘틱 태그-->
 
@@ -28,40 +32,48 @@
         <img src="./images/Penguins.jpg" alt="Seller"> 
       </div>
 
-      <section>
-        <h2>Green Tea Cooler </h2>  
-        <!-- 상대경로를 이용
-            . : 현재위치
-            .. : 부모 디렉토리-->
-        <img src="./images/green.jpg" alt="그린티">
-        <p>  Chock full of vitamins and minerals,
-          this elixir combines the healthful benefits of green tea with a 
-          twist of chamomile blossoms and ginger root.
-          </p>
+      <!--id 속성 : HTML 내에서 사용되는 -->
+      <section id="green">
+        <div class="green beverage">
+            <h2>Green Tea Cooler </h2>  
+            <!-- 상대경로를 이용
+                . : 현재위치
+                .. : 부모 디렉토리-->
+            <img src="./images/green.jpg" alt="그린티">
+            <p>  Chock full of vitamins and minerals,
+              this elixir combines the healthful benefits of green tea with a 
+              twist of chamomile blossoms and ginger root.
+              </p>
+            </div>
       </section>
 
-      <section>
-          <h2>Raspberry Ice Concentration</h2>
-          <img src="./images/lightblue.jpg" alt="라이트블루">
-          <p>Combining raspberry juice with lemon grass, 
-            citrus peel and rosehips, this icy drink will make your 
-            mind feel clear and crisp.
-          </p>
+      <section id="blue">
+        <div class="blue beverage=">
+            <h2>Raspberry Ice Concentration</h2>
+            <img src="./images/lightblue.jpg" alt="라이트블루">
+            <p>Combining raspberry juice with lemon grass, 
+              citrus peel and rosehips, this icy drink will make your 
+              mind feel clear and crisp.
+            </p>
+          </div>
     </section>
 
-    <section>
-        <h2>Blueberry Bliss Elixir</h2>
-        <img src="./images/blue.jpg" alt="블루">
-        <p> Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
-        </p>
+    <section id="purple">
+      <div class="purple beverage">
+          <h2>Blueberry Bliss Elixir</h2>
+          <img src="./images/blue.jpg" alt="블루">
+          <p> Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
+          </p>
+      </div>
       </section>
 
-      <section>
-        <h2>Cranberry Antioxidant Blast</h2>
-        <img src="./images/red.jpg" alt="레드">
-        <p> Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
-        </p>
-        <p><a href="index.html">메인으로 돌아가기</a></p>
+      <section id="red">
+        <div class="red beverage">
+          <h2>Cranberry Antioxidant Blast</h2>
+          <img src="./images/red.jpg" alt="레드">
+          <p> Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
+          </p>
+      </div>
     </section>
     </article>
     <nav>
