@@ -4,6 +4,39 @@
     <title>Bit Lounge 건강음료 HTML Page</title>
     <meta http-equiv="Content" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="./styles/style.css" />
+    <!--연습을 위해 Page CSS로 진행-->
+    <style>
+      /*구조 선택자 : 형제 관계에서의 위치로 요소를 선택*/
+      /*class=menu인 요소의 자식 li 중 첫번째 형제*/
+      .menu > li:first-child{
+        background-color: lightgreen;
+      }
+      /*class=menu인 요소의 자식 li 중 두번째 형제*/
+      .menu > li:nth-child(2){
+        background-color: lightblue;
+      }
+      /*class=menu인 요소의 자식 li 중 뒤에서 두번째 형제*/
+      .menu > li:nth-last-child(2){
+        background-color: pink;
+      }
+      /*class=menu인 요소의 자식 li 중에서 마지막 형제*/
+      .menu > li:last-child{
+        background-color: plum;
+      }
+      /*class=beverage 요소의 자식 h2*/
+      .beverage > h2{
+        /*브라우저의 기본 폰트 사이즈는 16px*/
+        /*절대 단위 px : 화면에 표시되는 점 한개
+          font-size : 24px;
+          상대단위 % : 비율 백분율
+          fonr-size: 150%;
+          상대단위 em: 배율 */
+          font-size: 1.5em;
+       }
+      .beverage > p {
+        font-size:  1.2em;  /*16px의 1.2qo 120%*/
+      }
+    </style>
   </head>
 
 
@@ -15,7 +48,7 @@
 
     <nav> <!--nav : 메뉴 등 사이트 네비게이션 관련 시멘틱 태그-->
       <!--리스트를 활용한 메뉴-->
-        <ul>
+        <ul class="menu">
           <!--ul 순서없는 리스트-->
           <!--ol 순서 있는 리스트-->
           <li>Green</li>
@@ -76,6 +109,7 @@
       </div>
     </section>
     </article>
+
     <nav>
       <p>
         <a href="index.html">메인으로 돌아가기</a>
