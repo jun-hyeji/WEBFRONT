@@ -86,7 +86,24 @@
       }
 
       .seller img{
-        border-radius: 20px;
+        border-radius: 20px;  /*네 귀퉁이 모두에 둥글기 적용*/
+
+        border-radius: 10px 20px 30px 40px; 
+        /*좌측위 우측위 좌측아래 우측아래순 : 시계방향*/
+
+        border-top-left-radius: 100px; /*특정 방향 접미사이용*/
+
+        border-radius: 50%; /*비율에 의한 모서리 다듬기*/
+
+        /*display 속성 : 공간 점유 방식을 변경 -> 
+          none, block, inline, inline-block*/
+        /* display: none;  none -> 공간자체를 점유하지 않음 */
+        
+        /*visibility 속성 : 표시 여부만 결정
+          visible, hidden
+          공간은 그대로 점유*/
+          visibility: hidden;
+
       }
     </style>
   </head>

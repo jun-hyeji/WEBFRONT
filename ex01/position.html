@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Position Example</title>
+        <style>
+            .container{
+                border:2px solid black;
+            }
+            .box{
+                width: 100px;
+                height: 100px;
+                
+                /*좌표계를 절대 좌표계로 변경
+                    left, top, right, bottom 속성을 이용*/
+                position: absolute;
+            }
+            .box:nth-child(1){
+                background-color: red;
+                left: 10px;
+                top: 10px;
+                z-index: 10;
+            }
+            .box:nth-child(2){
+                background-color: green;
+                left: 50px;
+                top: 50px;
+            }
+            .box:nth-child(3){
+                background-color: blue;
+                left: 90px;
+                top: 90px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!--기본적으로 HTML 좌표계는 상대좌표(static)-->
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </body>
+</html>
