@@ -46,3 +46,23 @@ nav, section{
  .beverage.purple{
     background-color: violet;
  }
+
+ /*가상 선택자(반응 선택자)
+        사용자의 반응에 따른 상태에 의해 요소를 선택
+        단독으로 사용되지는 않음*/
+    
+a:hover{    /*마우스가 요소 위에 올라갈 때*/    
+    color: black;
+}
+
+a:active{   /*마우스 버튼을 누른 상태*/
+    color: red;
+}
+
+a:link {    /*미방문 상태의 링크*/
+    color: cyan;
+}
+
+a:visited {   /*이미 방문한 링크의 상태*/
+    color: blue;
+}

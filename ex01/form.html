@@ -4,6 +4,43 @@
         <title>멤버십 가입</title>
         <meta http-equiv="Content-Type"
             content="text/html;charset=UTF-8"/>
+            <!--가급적 Extercal 합시다-->
+            <style>
+                /* 속성 선택자 : 특정 속성의 유무, 특정 속성의 특정 값을 조건으로 요소를 선택 */
+                /* type 속성을 가진 모든 요소 선택*/
+                * [type]{
+                    background-color: beige;
+                }
+
+                /*type 속성이 text 모든 input 태그*/
+                input[type=text] {
+                    background-color: lightgreen;
+                }
+
+                /*type 속성이 password인 모든 input 태그*/
+                input[tyoe=password]{
+                    background-color:  lightblue;
+                }
+
+                /*상태 선택자 : 입력양식의 상태에 따른 요소 선택*/
+                /*enabled : 입력 가능한 양식*/
+                /*disabled=false*/
+                input:enabled{
+                    background-color: white;
+                }
+
+                /*disabled : 입력 불가 양식
+                    disabled 속성이 있거나
+                    disabled ture*/
+                input:disabled {
+                    background-color: lightgray;
+                }
+
+                /* :focus : 입력 양식에 초점이 맞춰진 상태*/
+                input:focus{
+                    background-color: orange;
+                }
+            </style>
     </head>
     <body>
         <h1>멤버십 가입</h1>
@@ -26,7 +63,7 @@
                     <!--입력 할 수 있는 상태 : focus-->
                     <!--입력 필드의 name 속성 : 서버 전송시 사용
                         id 속성 : HTML 내에서 해당 요소를 식별하기 위해 사용-->
-                    <input name="userid" id="userid" /><br/>
+                    <input name="userid" id="userid" type="text" /><br/>
                     <label for="password">비밀번호</label>
                     <!--type="password" : 입력 값을 숨긴다-->
                     <input type="password" name="password" id="password" /><br />
