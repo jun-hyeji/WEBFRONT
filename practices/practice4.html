@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>로그인 폼 연습</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            font-family: "맑은고딕","돋움";
+            font-size: 12px;
+            color:#333
+        }
+        #login-form{
+            width: 180px;
+            padding:10px;
+            border: 1px solid #666;
+            border-radius: 10px ;
+            margin: 0 auto;
+        }
+        label{
+            display: block;
+            margin-top: 5px;
+            margin-bottom: 3px;
+        }
+        .img{
+            display: block;
+            width: 50px;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <form id="login-form">
+        <label for="userid">아이디</label>
+        <input type="text" name="userid">
+        <label for="password">패스워드</label>
+        <input type="password" name="password">
+        <input class="img" type="image" src="./images/login.png" />
+    </form>
+</body>
+</html>
