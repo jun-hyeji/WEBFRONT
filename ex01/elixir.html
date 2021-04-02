@@ -98,12 +98,31 @@
         /*display 속성 : 공간 점유 방식을 변경 -> 
           none, block, inline, inline-block*/
         /* display: none;  none -> 공간자체를 점유하지 않음 */
-        
+
         /*visibility 속성 : 표시 여부만 결정
           visible, hidden
           공간은 그대로 점유*/
-          visibility: hidden;
+          /* visibility: hidden; */
+      }
 
+      .menu > li {
+        float: right;
+        width: 100px;
+        list-style: none;
+        height: 25px;
+        text-align: center;
+        margin-right: 5px;
+        margin-bottom: 10px;
+      }
+
+      .beverage.green img, .beverage.purple img {
+        float: left;
+        margin-right: 10px;
+      }
+
+      .beverage.blue img, .beverage.red img{
+        float: right;
+        margin-left: 10px;
       }
     </style>
   </head>
@@ -120,10 +139,10 @@
         <ul class="menu">
           <!--ul 순서없는 리스트-->
           <!--ol 순서 있는 리스트-->
-          <li>Green</li>
-          <li>Blue</li>
-          <li>Purple</li>
-          <li>red</li>
+          <li><a href="#green">Green</a><!--id로 링크--></li>
+          <li><a href="#blue">Blue</a></li>
+          <li><a href="#purple">purple</a></li>
+          <li><a href="#red">red</a></li>
         </ul>
       </nav>
 

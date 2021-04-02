@@ -5,6 +5,15 @@
         <style>
             .container{
                 border:2px solid black;
+                margin-top: 50px;
+                position: relative;
+                /*자식의 좌표계를 absolute로 설정하려면
+                    부모의 좌표계를 relative로 설정하는 것이 좋다*/
+                    height: 100px;
+
+                /*자식의 영역이 부모를 벗어날 때의 처리*/
+                overflow:  hidden;  /*벗어난 내용은 표시하지 않는다*/
+                overflow: scroll;   /*벗어난 내용은 스크롤*/
             }
             .box{
                 width: 100px;
