@@ -54,8 +54,39 @@
         font-family: "맑은 고딕", 굴림, sans-serif;
       }
 
+      /*text-decoration 속성 : */
+      /*none, line-through, underline,*/
       .feature{
         text-decoration: underline;
+      }
+      /*border 속성 : 요소의 테두리를 꾸미는 속성*/
+      .beverage{
+        /*개별 속성을 적용할 때는 접미사 붙임*/
+        /* border-color: gray;
+        border-style: solid;
+        border-width: 3px ; */
+        
+        /*일괄 적용 : width style color순 */
+        border: 3px dashed gray;
+      }
+
+      .beverage img{
+        /*값이 1개 : 전 방향 적용*/
+        padding: 10px;
+      }
+
+      .beverage h2{
+        /*값이 2개 : 위-아래 왼쪽-오른쪽*/
+        margin: 0 10px;
+      }
+
+      .beverage p{
+        /*값이 4개 : 위 오른쪽 아래 왼쪽 순*/
+        margin: 20px 10px 10px 10px;
+      }
+
+      .seller img{
+        border-radius: 20px;
       }
     </style>
   </head>
@@ -82,7 +113,7 @@
     <article> <!-- article : 실제 컨텐츠를 표시하는 시멘틱 태그-->
 
       <!--시멘틱 태그는 div의 일종이지만, 좀 더 구체적인 의미를 가지는 공간점유태그-->
-      <div>
+      <div class="seller">
         <img src="./images/Penguins.jpg" alt="Seller"> 
       </div>
 
@@ -102,7 +133,7 @@
       </section>
 
       <section id="blue">
-        <div class="blue beverage=">
+        <div class="blue beverage">
             <h2>Raspberry Ice Concentration</h2>
             <img src="./images/lightblue.jpg" alt="라이트블루">
             <p>Combining raspberry juice with lemon grass, 
