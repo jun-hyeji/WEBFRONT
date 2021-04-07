@@ -28,4 +28,62 @@
             &copy;Bit Academy
         </div>
     </body>
+<script>
+    //  #btn-add click 처리기
+    function addItem(event) {
+        //  추가할 내용을 input#item에서 찾아온다
+        var itemInput = document.getElementById("item");
+        var item = itemInput.value.trim();  //  좌우 공백 제거
+        console.log("추가할 아이템:", item);
+
+        if (item.length > 0) {
+            //  부모 요소를 선택
+            var container = document.getElementById("list");
+            //  새 노드 생성
+            var itemNode = document.createElement("li");
+            //  내부 속성과 콘텐츠 설정
+            itemNode.innerText = item;
+
+            //  노드 내부에 삭제 버튼
+            var toolbar = document.createElement("div");
+            toolbar.style.display = "inline";
+            var delBtn = document.createElement("button");
+            delBtn.innerText = "삭제";
+            delBtn.style.float = "right";
+
+            toolbar.appendChild(delBtn);
+            itemNode.appendChild(toolbar);
+
+            //  삭제 버튼에 이벤트 리스너를 부착
+            delBtn.addEventListener("click", function(event) {
+                console.log(event.target);
+                //  삭제할 요소
+                var removeItem = event.target.parentNode.parentNode;
+                //  삭제할 요소의 부모
+                var parent = removeItem.parentNode;
+
+                //  부모로부터 분리
+                parent.removeChild(removeItem);
+            });
+            //  itemNode를 부모에 추가
+            container.appendChild(itemNode);
+            //  input#item 값을 초기화
+            itemInput.value = "";
+            itemInput.focus();
+        }
+    }
+
+    //  초기화: load 이벤트 처리
+    window.addEventListener("load", function(event) {
+        //  시작시 list 모두 비우기
+        var cartItem = document.querySelectorAll("#list > li");
+        for (var i = 0; i < cartItem.length; i++) {
+            //  부모로부터 분리
+            cartItem[i].parentNode.removeChild(cartItem[i]);
+        }
+        //  추가 버튼 button#btn-add 에 이벤트 부착
+        document.getElementById("btn-add")
+            .addEventListener("click", addItem);
+    });
+</script>
 </html>
