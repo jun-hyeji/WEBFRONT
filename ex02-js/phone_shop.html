@@ -32,6 +32,13 @@
 <body>
     <div id="product-info">
         <img id="main-image" src="images/iphone-xs.jpeg" class="selected" title="iPhones XS">
+        <!--inline 방식으로 스크립트 실행-->
+        <!-- <img 
+            id="main-image" 
+            src="images/iphone-xs.jpeg" 
+            class="selected" 
+            title="iPhones XS"
+            onclick="alert(this.title);"> -->
         <h2>iPhone Xs</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
             magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -68,6 +75,43 @@
             console.log("sub title 속성 : ", sub.getAttribute("title"));
         }
     }
-    testAttribute();
+    // testAttribute();
+    //  이벤트 리스너 부착 방법 2.
+    document.getElementById("main-image")
+        .onclick = function(event){
+            //  event - > 발생한 이벤트의 정보
+            console.log(event);
+            console.log("이벤트 명 : ", event.__proto__);
+            console.log("이벤트 발생 객체 : ", event.target);
+            // 중요 : event.target으로 이벤트를 발생시킨
+            //         객체를 참조할수 있다
+        };
+    //  input#keyword 에 내용을 입력하면
+    //  변경된 내용을 #btn-search 에 출력해봅시다.
+    // document.getElementById("keyword")
+    // .onkeyup = function(event){
+    //     //  이벤트를 발생시킨 객체 확인
+    //     console.log(event.target);
+    //     console.log("눌러진 키 : ", event.keyCode);
+    //     var btn = document.querySelector("#btn-search");
+    //     btn.innerText = event.target.value + " : 검색";
+    // };
+ 
+    // 리스너 부착 방법 3. addEvemtlistener
+    // ->  가장 추천
+        window.addEventListener("load",function(event){
+        //  DOM 구성이 완료되지 않은 상태에서
+        //  요소 선택하고자 하면 오작동
+        //  load 이벤트를 이용 DOM이 완전 구성이
+        //  끝난 상태에서 페이지를 초기화 해야한다
+            document.getElementById("keyword")
+            .addEventListener("keyup", function(event){
+            console.log(event.target);
+            console.log("눌러진 키 : ", event.keyCode);
+            var btn = document.querySelector("#btn-search");
+            btn.innerText = event.target.value + " : 검색";
+            });
+    });
+
 </script>
 </html>
