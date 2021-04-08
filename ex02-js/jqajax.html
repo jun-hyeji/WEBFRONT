@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Example</title>
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <button id="btnCallSnippet">HTML 조각 불러오기</button>
+    <button id="btnCallMovies">영화 목록 불러오기</button><!--API Call-->
+
+    <!-- 결과 출력 영역-->
+    <div id = "info"><!--btnCallSnippet 버튼을 누르면 페이지 조각을 받아서 반영-->
+        
+    </div>
+
+    <!-- btnCallMovies 버튼을 누르면 API 서버에 데이터 요청,-->
+    <table id="list" border="1" width="640">
+
+    </table>
+    <script>
+        //초기화
+        $(document).ready(function(event){
+            //  btnCallSmippet 버튼에 클릭이벤트 부착
+            $("#btnCallSnippet").on("click", function(event){
+                console.log("btnCallSnippet click")
+
+                //  jQuery를 이용한 Ajax(비동기 호출)
+                $.ajax({
+                    // url : "snippet.html",  //  요철을 받을 서버 페이주소
+                    url : "Notfound.html",
+                    type : "GET",
+                    //  data :      //  서버에 요청할 data
+                    dataType: "text",       //  서버로부터 전달 받을 데이터 타입
+                    success : function(response)  { 
+                        //  요청이 성공(200)했을 때 실행될 콜백함수
+                        //  1번째 인자, => 서버로부터 전달받은 데이터
+                        console.log(response);
+                        //  UI에 반영
+                        $("#Info").html(response);
+                    },
+                    error : function(request,   //  요청 정보
+                        status, //  응답 코드
+                        error){ //  에러 정보 객체
+                            //  요청이 실패했을 때 실행될 콜백함수
+                            console.error("response : ", response);
+                            console.error("status : ", status);
+                            console.error("error : ", error);
+                        }
+                })
+            })
+        })
+    </script>
+</body>
+</html>
