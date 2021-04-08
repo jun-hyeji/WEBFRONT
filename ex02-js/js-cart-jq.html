@@ -74,8 +74,7 @@
     }
 
     //  초기화: load 이벤트 처리
-    // window.addEventListener("load", function(event) {
-        $(document).ready(function(event){
+    window.addEventListener("load", function(event) {
         //  시작시 list 모두 비우기
         var cartItem = document.querySelectorAll("#list > li");
         for (var i = 0; i < cartItem.length; i++) {
