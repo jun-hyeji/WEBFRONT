@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Cart</title>
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        li {
+            height: 30px;
+        }
+        li button {
+            float: right;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- View 영역 -->
+    <div id="app">
+        <!-- header -->
+        <cart-header></cart-header>
+        <!-- 전체 목록 -->
+        <div v-show="showAll"><!-- showAll 모델이 true면 보여줘라 -->
+            <h2>전체 목록</h2>
+            <!-- v-for : Collection 모델을 루프 -->
+            <ul>
+                <li v-for="item in items">{{ item.name }}</li>
+            </ul>
+        </div>
+        <!-- 살 물건들 -->
+        <shop-list v-bind:shopping-items="items"></shop-list>
+        <!-- 입력 창 -->
+        <cart-input v-on:add-item="addItem"></cart-input>
+        <!-- add-item 이번트 발생 -> addItem 함수를 호출 -->
+        <!-- v-model: 모델을 입력 요소와 연결 -->
+        <input type="checkbox" v-model="showOption">산 물건 보기
+        <!-- 산 물건들-->
+        <bought-list v-on:remove-item="removeItem" v-bind:bought-items="items" v-show="showOption"></bought-list>
+        <!-- footer -->
+        <cart-footer></cart-footer>
+    </div>
+
+    <script>
+        //  전역 컴포넌트
+        Vue.component("cart-header", {
+            template: `<h1>{{ title }}</h1>`,
+            data: function() {
+                return {
+                    title: "Vue Cart"
+                }
+            }
+        });
+        Vue.component("cart-footer", {
+            template: "<p>&copy; Bit Academy 2021</p>"
+        });
+        //  지역 컴포넌트 -> components에 등록
+        var shopList = {
+            props: ['shopping-items'],
+            template: `
+            <div>
+                <h2>살 물건들</h2>
+                <ul>
+                    <li v-for='(item, index) in shoppingItems' v-if="!item.buy">
+                        {{ item.name }}
+                        <button v-on:click="buyItem(item, index)">구매</button>
+                    </li>
+                </ul>
+            </div>`,
+            methods: {
+                buyItem: function(item, index) {
+                    console.log(item);
+                    item.buy = true;
+                }
+            }
+        }
+        var boughtList = {
+            props: ['bought-items'],
+            template: `
+            <div>
+                <h2>산 물건들</h2>
+                <ul>
+                    <li v-for="(item, index) in boughtItems" v-if="item.buy">
+                        {{ item.name }}
+                        <button v-on:click="removeItem(item, index)">삭제</button>
+                        <button v-on:click="cancelBuy(item, index)">구매 취소</button>
+                    </li>
+                </ul>
+            </div>`,
+            methods: {
+                cancelBuy: function(item, index) {
+                    item.buy = false;
+                },
+                removeItem: function(item, index) {
+                    console.log("삭제할 항목:", item);
+                    //  삭제 이벤트발생
+                    this.$emit("remove-item", item);
+                }
+            }
+        }
+        var cartInput = {
+            template: `
+            <div>
+                <input v-model="newItem"><button v-on:click="addItem">추가</button>
+            </div>`,
+            data: function() {
+                return {
+                    newItem: ""    //  새로 살 물건 이름
+                }
+            },
+            methods: {
+                addItem: function() {
+                    console.log("새로살 물건:", this.newItem);
+                    //  입력된 값 체크
+                    if (this.newItem.trim().length > 0) {
+                        //  추가할 수 있다.
+                        //  부모에게 이벤트를 던져주자
+                        this.$emit("add-item", this.newItem);
+                        this.newItem = "";
+                    }
+                }
+            }
+        }
+        var app = new Vue({
+            el: "#app",
+            components: {
+                "shop-list": shopList,
+                "bought-list": boughtList,
+                "cart-input": cartInput
+            },
+            data: {
+                items: [
+                    { name: "무", buy: false },
+                    { name: "배추", buy: false },
+                    { name: "쪽파", buy: true },
+                    { name: "고춧가루", buy: false}
+                ],
+                showAll: true,  //  전체 목록 보이기 여부
+                showOption: true    //  산 목록 보이기 여부
+            },
+            methods: {
+                addItem: function(newItem) {
+                    //  cart-input으로부터 발생한 add-item 이벤트 처리기
+                    console.log("ADD ITEM:", newItem);
+                    //  새 객체를 만들어서 배열에 추가
+                    this.items.push({
+                        name: newItem,
+                        buy: false
+                    });
+                },
+                removeItem: function(item) {
+                    //  리스트에서 item의 인덱스 확인
+                    var index = this.items.indexOf(item);
+                    if (index > -1) {   //  없으면 -1
+                        this.items.splice(index, 1);    //  item 배열에서 index 위치부터 1개를 삭제
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
