@@ -17,7 +17,7 @@
         
     </div>
 
-    <!-- btnCallMovies 버튼을 누르면 API 서버에 데이터 요청,-->
+    <!-- btnCallMovies 버튼을 누르면 API 서버에 데이터 요청, 결과를 반영-->
     <table id="list" border="1" width="640">
 
     </table>
@@ -30,10 +30,10 @@
 
                 //  jQuery를 이용한 Ajax(비동기 호출)
                 $.ajax({
-                    // url : "snippet.html",  //  요철을 받을 서버 페이주소
-                    url : "Notfound.html",
+                    url : "snippet.html",  //  요철을 받을 서버 페이주소
+                    // url : "Notfound.html",
                     type : "GET",
-                    //  data :      //  서버에 요청할 data
+                    //  data :               //  서버에 요청할 data
                     dataType: "text",       //  서버로부터 전달 받을 데이터 타입
                     success : function(response)  { 
                         //  요청이 성공(200)했을 때 실행될 콜백함수
@@ -50,9 +50,9 @@
                             console.error("status : ", status);
                             console.error("error : ", error);
                         }
-                })
-            })
-        })
+                });
+            });
+        });
     </script>
 </body>
 </html>

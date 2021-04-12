@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Components</title>
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- View로 사용할 HTMLElement -->
+    <div id="app">
+        <!-- Header 영역: 전역 컴포넌트 -->
+        <global-header></global-header>
+        <!-- Content 영역 -->
+        <h2>{{ content }}</h2>
+        <!-- 지역 컴포넌트 -->
+        <!-- 부모 -> 자식으로 데이터 전달: propsdata
+            자식 -> 부모로 데이터 전달: event 발생 -->
+        <local-component1 
+            v-on:send-msg="rcvMsg"
+            v-bind:propsdata="message"></local-component1>
+        <local-component2></local-component2>
+    </div>
+
+    <!-- Event Bus 테스트를 위한 별도 컴포넌트-->
+    <div id="eventBusEx">
+        <h2>EventBus Receiver</h2>
+        <p>{{ message }}</p>
+    </div>
+
+    <script>
+    //  전역 컴포넌트: 모든 인스턴스에서 사용할 수 있는 컴포넌트
+    //  global-header
+    Vue.component("global-header", {
+        //  template: View로 사용할 DOM html 문자열 
+        template: "<div><h1>{{ title }}</h1></div>",
+        data: function() {
+            return {
+                title: "Global-header"
+            }
+        }
+    });
+    //  지역 컴포넌트: Object Properties를 JavaScript 객체로 만들고, ViewModel의 components 속성에 등록해야 한다
+    //      그 자체로 독립적인 ViewModel 역할을 수행
+    var cmp1 = {
+        // template: "<div><h2>Local Component</h2></div>"
+        //  부모로부터 전달받은 props 데이터
+        props: ['propsdata'],
+        template: `<div>
+            <h2>Local Component</h2>
+            <p>{{ propsdata }}</p>
+            <button v-on:click='sendMsg'>부모, 이벤트 버스에게 메시지 전송</button>
+        </div>`,
+        methods: {
+            sendMsg: function() {
+                this.$emit("send-msg", "자식으로부터의 메시지"); // 컴포넌트 이벤트 발생!
+                //  eventBus로 이벤트 발생!
+                eventBus.$emit("triggerEventBus", "상속 관계를 벗어난 컴포넌트로부터의 메시지");
+            }
+        }
+    }
+    //  기본적으로 Vue는 부모 자식간의 통신만 지원
+    //  만약 부모 자식 관계를 벗어난 컴포넌트간의 통신을 하기 위해서는 별도의 뷰 객체가 필요
+    //  이벤트를 중계해 줄 수 있는 EventBus 필요
+    var eventBus = new Vue();
+
+    var eventBusReceiver = new Vue({
+        el: "#eventBusEx",
+        data: {
+            message: "Waiting for Message"
+        },
+        created: function() {
+            var instance = this;
+            //  eventBus에서 triggerEventBus 이벤트가 발생하면 실행할 핸들러 등록
+            eventBus.$on("triggerEventBus", function(message) {
+                console.log("Event from EventBus:", message);
+                instance.message = message;
+            });
+        }
+    });
+
+    //  Vue 객체(ViewModel)
+    var app = new Vue({
+        el: "#app", //  객체에서 사용할 HTMLElement
+        data: {
+            content: "Vue Instance",
+            message: "부모로부터의 메시지"  //  local-component1에 전달
+        },
+        //  지역 컴포넌트 사용을 위해서는 components 속성에 등록해야 한다
+        components: {
+            'local-component1': cmp1,
+            "local-component2": {
+                //  속성 설정
+                template: "<div><h2>Local Component 2</h2></div>"
+            }
+        },
+        methods: {
+            //  이벤트 처리기
+            rcvMsg: function(message) {
+                console.log("Signal From Child");
+                alert(message);
+            }
+        }
+    });
+    </script>
+</body>
+</html>

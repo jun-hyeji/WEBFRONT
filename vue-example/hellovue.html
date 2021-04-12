@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Example</title>
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- style -->
+    <style>
+        #app {
+            border: 1px dashed red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello Vue!</h1>
+
+    <div id="app"><!-- View 영역 -->
+        {{ message }}
+    </div>
+
+    <script>
+        //  Vanilla JS
+        // document.getElementById("app").innerText = "Hello, Vanilla JS!";
+    </script>
+
+    <!-- Vue 인스턴스 생성 
+    MVVM 패턴에서 Model과 View를 연결하는 VM(ViewModel) 역할 수행-->
+    <script>
+        var app = new Vue({
+            el: "#app", //  View로 사용할 DOM (HTMLElement) -> id로 셀렉트하자!
+            data: {     //  Model (데이터)
+                message: "Hello, Vue.js"
+            },
+            //  실행의 단계마다 이벤트 발생 -> 각 단계별로 Hook 함수가 연결된다
+            beforeCreate: function() {
+                //  객체가 생성되지 않은 상태
+                //  아직 model, view 에 접근할 수 없는 상태
+                console.log("beforeCreate");
+                console.log("MODEL:", this.message);
+            },
+            created: function() {
+                //  ViewModel이 생성되었으나 View가 연결되지 않은 상태
+                //  Model에 접근할 수 있는 상태
+                //  만약 API 호출해야 한다면 가장 적합한 LifeCycle 단계
+                console.log("created");
+                console.log("MODEL:", this.message);
+                //  View 연결 안된 상태 -> DOM에 접근할 수 없다
+                console.log("VIEW:", this.$el);
+            },
+            mounted: function() {
+                //  View가 연결되어서 DOM에 접근할 수 있는 상태
+                console.log("mounted");
+                console.log("VIEW:", this.$el);
+                //  el 요소가 ViewModel에 바인딩 됨
+                //  이후에 DOM 요소에 접근할 수 있다.
+                console.log("EL:", this.$el.innerText);
+            },
+            updated: function() {
+                //  내부 모델이 변경되었을 때 발생
+                console.log("updated:", this.message);
+                //  ViewModel이 Virtual DOM을 다시 구성 -> 실제 DOM을 재구축
+            }
+        });
+    </script>
+</body>
+</html>

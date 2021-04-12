@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie App</title>
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        .movie {
+            min-height: 100px;
+            padding: 10px;
+        }
+
+        .movie img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            float: left;
+            margin: 10px;
+        }
+
+        .movie h2 {
+            font-size: 1.2em;
+        }
+
+        .movie p {
+            font-size: 0.9em;
+        }
+
+        .movie:nth-child(2n) {
+            background-color: rgba(127, 127, 127, 0.1);
+        }
+
+        .movie:nth-child(2n+1) {
+            background-color: rgba(0, 0, 127, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 렌더링 영역 -->
+    <h1>Pixar Movies</h1>
+    <div id="app">
+        <div class="movie" v-for="movie in movies">
+            <img v-bind:src="'http://localhost:3000/images/' + movie.image">
+            <h2>{{ movie.title }}</h2>
+            <p>감독: {{ movie.director }}</p>
+            <p>개봉년도: {{ movie.year }}</p>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app", //  렌더링할 HTMLElement
+            data: {
+                movies: []  //  모델
+            },
+            created: function() {
+                console.log("Load Movies FROM API Server");
+                var instance = this;
+                //  model 생성 -> API 서버로부터 데이터를 받아오기 가장 좋은 라이프사이클 -> created
+                axios.get("http://localhost:3000/movies")
+                .then(response => {
+                    //  성공했을 때
+                    // console.log(response);
+                    this.movies = response.data.movies;
+                    console.log("movies:", this.movies);
+                })
+                .catch(error => {
+                    //  실패했을 때
+                    console.error(error);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
